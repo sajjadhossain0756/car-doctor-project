@@ -1,11 +1,11 @@
+import ServicesSection from "./components/ServicesSection";
 
 
 
 export default function Home() {
   return (
     <div>
-      <h1 className="text-5xl btn btn-primary">Helleo world</h1>
-      
+      <ServicesSection></ServicesSection>
     </div>
   );
 }
