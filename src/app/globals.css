@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+.overlay-bg {
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(1,3,20,0.6971580868675595) 63%);
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
