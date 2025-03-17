@@ -7,10 +7,10 @@ import { FaArrowRight } from "react-icons/fa6";
 const ServicesSection = async () => {
   const serviceCollection = dbConnect(collectionNameObj.servicesCollection)
   const data = await serviceCollection.find({}).toArray();
-  
+
   console.log(data)
   return (
-    <div className='grid gap-4 grid-cols-12 lg:grid-cols-3 p-10'>
+    <div className='grid gap-4 lg:grid-cols-3 p-10'>
       {data && data.map(item => <div key={item._id} className='shadow-lg p-4 rounded-lg'>
         <Image src={item?.img} height={280} width={400} alt={item.title} className='rounded-lg ' />
         <h2 className='text-2xl text-black/70 font-bold pt-4'>{item.title}</h2>

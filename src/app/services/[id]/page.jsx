@@ -2,6 +2,7 @@ import dbConnect, { collectionNameObj } from '@/lib/dbConnect';
 import { ObjectId } from 'mongodb';
 import Image from 'next/image';
 import React from 'react'
+import detailsBannar from '../../../../public/assets/images/checkout/checkout.png'
 
 const ServiceDetailsPage = async ({ params }) => {
     const p = await params;
@@ -12,7 +13,7 @@ const ServiceDetailsPage = async ({ params }) => {
         <div className='px-10 py-4 '>
             <section className='mb-6'>
                 <figure className='relative w-full h-[400px]'>
-                    <Image src={'/assets/images/checkout/checkout.png'} fill
+                    <Image src={detailsBannar} fill
                         className='object-cover rounded-xl' alt='checkout' />
                     <div className='absolute overlay-bg h-full w-full rounded-xl'></div>
                     <div className='absolute w-full h-full flex items-center pl-10'>
@@ -22,7 +23,7 @@ const ServiceDetailsPage = async ({ params }) => {
                     </div>
                 </figure>
             </section>
-            <section className='flex gap-4 items-center'>
+            <section className='flex flex-col md:flex-row gap-4 items-center'>
                 <figure className='flex-1'>
                 <Image src={data?.img} height={300} width={540}  className='rounded-lg' alt={data?.title} />
                 </figure>
