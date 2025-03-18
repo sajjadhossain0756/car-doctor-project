@@ -1,27 +1,42 @@
 'use client'
 import React from 'react'
 import { signIn } from "next-auth/react"
+import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
 
 const SignInForm = () => {
-    
+    const router = useRouter();
 
     const handleSubmit = async (e) => {
+        
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+        toast('Submitting .... ');
+
         try {
-            await signIn('credentials', { email, password, callbackUrl: '/' })
-            alert('successfully signIn');
-            form.reset()
-            
+            const response = await signIn('credentials', {
+                email,
+                password,
+                callbackUrl: '/',
+                redirect: false
+            });
+            if (response.ok) {
+                router.push('/');
+                toast.success('successfully signIn');
+                form.reset()
+            }else{
+                toast.error('authentication failed')
+            }
+
         } catch (error) {
-            alert('authentication failed')
+            toast.error('authentication failed')
             console.log(error);
-            
+
         }
-        
+
     }
     return (
         <div>

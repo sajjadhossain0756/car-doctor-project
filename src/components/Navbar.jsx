@@ -1,9 +1,21 @@
+'use client';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 import React from 'react'
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
+    const router = useRouter();
+    const { data: session, status } = useSession();
+    console.log(session)
 
+    const handleSignOut = async () =>{
+       await signOut({redirect: false})
+       toast('signout successfull')
+       router.push('/signIn');
+    }
     const navMenu =
         <>
             <li> <Link href={'/'}>Home</Link></li>
@@ -27,6 +39,17 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                <ul className='menu menu-horizontal px-1'>
+                    {status === 'authenticated' ?
+                        (<>
+                            <li className='btn btn-outline mr-2' onClick={handleSignOut}> Sign Out</li>
+                        </>) :
+                        (<>
+                            <li className='btn text-green-500 btn-outline mr-2'> <Link href={'/register'}>Register</Link></li>
+                            <li className='btn btn-outline mr-1'> <Link href={'/signIn'}>Sign In</Link></li>
+                        </>)}
+
+                </ul>
                 <a className="btn btn-outline text-orange-500">Appoinment</a>
             </div>
             <div className="dropdown">
