@@ -39,14 +39,21 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <ul className='menu menu-horizontal px-1'>
+                <ul className='menu menu-horizontal px-1 items-center'>
                     {status === 'authenticated' ?
                         (<>
+                            <li>
+                                <Image src={session?.user?.image}
+                                 height={60} width={60}
+                                 className='rounded-full'
+                                  alt='profileImage' />
+                            </li>
                             <li className='btn btn-outline mr-2' onClick={handleSignOut}> Sign Out</li>
                         </>) :
                         (<>
-                            <li className='btn text-green-500 btn-outline mr-2'> <Link href={'/register'}>Register</Link></li>
-                            <li className='btn btn-outline mr-1'> <Link href={'/signIn'}>Sign In</Link></li>
+                            <li > <Link href={'/register'}
+                            className='btn text-green-500 btn-outline mr-2'>Register</Link></li>
+                            <li > <Link href={'/signIn'} className='btn btn-outline mr-1'>Sign In</Link></li>
                         </>)}
 
                 </ul>
